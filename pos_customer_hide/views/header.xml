@@ -3,8 +3,8 @@
     <data>
         <template id="hide_numpad_assets" inherit_id="point_of_sale.assets" name="point_of_sale assets">
             <xpath expr="." position="inside">
-                <script type="text/javascript" src="/hide_numpad/static/src/js/hide_numpad.js"></script>
-                      <link href="/hide_numpad/static/src/css/pad.css" rel="stylesheet"/>
+                <script type="text/javascript" src="/pos_customer_hide/static/src/js/hide_numpad.js"></script>
+                      <link href="/pos_customer_hide/static/src/css/pad.css" rel="stylesheet"/>
             </xpath>
         </template>
     </data>

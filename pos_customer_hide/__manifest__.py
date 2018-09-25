@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'new numpad',
+    'name': 'pos_customer_hide',
     'version': '1.0.0',
     'category': 'Point Of Sale',
-    'author': 'mohamed ibrahim',
+    'author': 'ITSS',
     'sequence': 10,
-    'summary': 'New numpad',
+    'summary': 'pos_customer_hide',
     'description': "",
     'depends': ['point_of_sale'],
     'data': [

@@ -1,4 +1,4 @@
-odoo.define('hide_numpad.hide_numpad', function (require) {
+odoo.define('pos_customer_hide.hide_numpad', function (require) {
     "use strict";
     var screens = require('point_of_sale.screens');
 
