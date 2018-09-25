@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates id="hide_numpad.template" inherit_id="point_of_sale.template">
+     <!-- <t t-extend="OrderSelectorWidget">
+  
+        <t t-jquery=".order-selector" t-operation="after">
+
+                      <script>
+            $('.select-order').each(function(){
+    if($(".select-order").length>4){
+$(".neworder-button").css("display","none");
+}
+else{
+$(".neworder-button").css("display","block");
+}
+}); 
+
+             </script>
+
+        </t>
+    </t> -->
+
+
+    
+
+        <!-- <t t-extend="NumberPopupWidget">
+  
+        <t t-jquery=".popup-numpad" t-operation="before">
+            <div style="color: #E91E63; border: 1px solid #E91E63; border-radius: 5px; margin: 10px; padding: 0 10px;">
+          <h5>you cannot edit discounts from here</h5>
+            </div>
+            <script>
+            $(".popup-numpad .input-button").attr("disabled", "disabled");
+            $(".popup-numpad .mode-button").attr("disabled", "disabled");
+            </script>
+
+        </t>
+    </t> -->
+
+
+     <t t-extend="NumpadWidget">
+  
+        <t t-jquery=".numpad" t-operation="before">
+
+            <script>
+            $(".numpad-minus").attr("disabled", "disabled").css({"background-color": "#e74c3c","color":"#FFF"});
+            </script>
+
+        </t>
+    </t>
+    <t t-name="ClientLine">
+        <tr class='client-line' t-att-data-id='partner.id'>
+            <td><t t-esc='partner.phone or partner.mobile or ""' /></td>
+                        <td><t t-esc='partner.barcode' /></td>
+        </tr>
+         <!--<t t-jquery='.client-line tr td:nth-child(3)' t-operation='replace'>-->
+            <!--&lt;!&ndash;<th style="display:none;">Points</th>&ndash;&gt;-->
+        <!--</t>-->
+
+        <script>
+
+
+        </script>
+
+    </t>
+
+     <!-- <t t-name="ClientListScreenWidget">
+
+ 
+        <div class="clientlist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancel
+                    </span>
+                    <span class='searchbox'>
+                        <input placeholder='Search Customers' />
+                        <span class='search-clear'></span>
+                    </span>
+                    <span class='searchbox'></span>
+                    <span class='button new-customer'>
+                        <i class='fa fa-user'></i>
+                        <i class='fa fa-plus'></i>
+                    </span>
+                    <span class='button next oe_hidden highlight'>
+                        Select Customer
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+                </section>
+                <section class="full-content">
+                    <div class='window'>
+                        <section class='subwindow collapsed'>
+                            <div class='subwindow-container collapsed'>
+
+                            </div>
+                        </section>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix touch-scrollable scrollable-y'>
+                                    <table class='client-list'>
+                                        <thead>
+                                            <tr>
+                                                <th>Phone</th>
+                                                <th>Barcode</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class='client-list-contents'>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                                
+                </section>
+            </div>
+        </div>
+
+    </t> -->
+    <t t-name="ClientDetails">
+        <section class='client-details'>
+            <div class='edit-buttons'>
+                <div class='button edit'><i class='fa fa-pencil-square' /></div>
+            </div>
+            <div class='client-details-box clearfix'>
+                <div class='client-details-left'>
+                    <div class='client-detail'>
+                        <span class='label'>Address</span>
+                        <t t-if='partner.address'>
+                            <span class='detail client-address'><t t-esc='partner.address' /></span>
+                        </t>
+                        <t t-if='!partner.address'>
+                            <span class='detail client-address empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Email</span>
+                        <t t-if='partner.email'>
+                            <span class='detail client-email'><t t-esc='partner.email' /></span>
+                        </t>
+                        <t t-if='!partner.email'>
+                            <span class='detail client-email empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Phone</span>
+                        <t t-if='partner.phone'>
+                            <span class='detail client-phone'><t t-esc='partner.phone' /></span>
+                        </t>
+                        <t t-if='!partner.phone'>
+                            <span class='detail client-phone empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+                <div class='client-details-right'>
+                    <div class='client-detail'>
+                        <span class='label'>Barcode</span>
+                        <t t-if='partner.barcode'>
+                            <span class='detail client-id'><t t-esc='partner.barcode'/></span>
+                        </t>
+                        <t t-if='!partner.barcode'>
+                            <span class='detail client-id empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Tax ID</span>
+                        <t t-if='partner.vat'>
+                            <span class='detail vat'><t t-esc='partner.vat'/></span>
+                        </t>
+                        <t t-if='!partner.vat'>
+                            <span class='detail vat empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div t-attf-class='client-detail #{widget.pos.pricelists.length &lt;= 1 ? "oe_hidden" : ""}'>
+                        <span class='label'>Pricelist</span>
+                        <t t-if='partner.property_product_pricelist'>
+                            <span class='detail property_product_pricelist'><t t-esc='partner.property_product_pricelist[1]'/></span>
+                        </t>
+                        <t t-if='!partner.property_product_pricelist'>
+                            <span class='detail property_product_pricelist empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </t>
+        <t t-name="ClientListScreenWidget">
+        <div class="clientlist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancel
+                    </span>
+                    <span class='searchbox'>
+                        <input placeholder='Search Customers' />
+                        <span class='search-clear'></span>
+                    </span>
+                    <span class='searchbox'></span>
+                    <span class='button new-customer'>
+                        <i class='fa fa-user'></i>
+                        <i class='fa fa-plus'></i>
+                    </span>
+                    <span class='button next oe_hidden highlight'>
+                        Select Customer
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+                </section>
+                <section class="full-content">
+                    <div class='window'>
+                        <section class='subwindow collapsed'>
+                            <div class='subwindow-container collapsed'>
+                                <div class='subwindow-container-fix client-details-contents'>
+                                </div>
+                            </div>
+                        </section>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix touch-scrollable scrollable-y'>
+                                    <table class='client-list'>
+                                        <thead>
+                                            <tr>
+                                                <th>Phone</th>
+                                                <th>Barcode</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class='client-list-contents'>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </t>
+
+
+    <t t-extend='ClientListScreenWidget'>
+        <t t-jquery='.client-list thead tr th:nth-child(3)' t-operation='replace'>
+            <!--<th style="display:none;">Points</th>-->
+        </t>
+    </t>
+  <t t-extend='ClientLine'>
+        <t t-jquery='tr.client-line td:nth-child(3)' t-operation='replace'>
+            <!--<td>-->
+                <!--<t t-esc='widget.format_pr(partner.loyalty_points || 0, widget.pos.loyalty ? widget.pos.loyalty.rounding : 1.0)' />-->
+            <!--</td>-->
+        </t>
+    </t>
+    <t t-extend="ClientDetails">
+        <t t-jquery=".client-details-right .client-detail:nth-child(1)" t-operation='replace' >
+
+
+        </t>
+
+
+    </t>
+
+</templates>
